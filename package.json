@@ -1,0 +1,12 @@
+{
+  "name": "nix-p",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "run": "marp -w ./slides.md"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

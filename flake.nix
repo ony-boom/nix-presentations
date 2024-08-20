@@ -13,7 +13,7 @@
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     devShells.${system}.default = pkgs.mkShell {
-      buildInputs = with pkgs; [marp-cli];
+      buildInputs = with pkgs; [marp-cli nodejs];
     };
   };
 }
