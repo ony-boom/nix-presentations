@@ -19,18 +19,11 @@ with lib; {
     services.nginx = {
       enable = true;
       virtualHosts.localhost.locations."/" = {
-      	root = "${presentationPackage}";
+        root = "${presentationPackage}";
         index = "index.html";
       };
     };
 
     networking.firewall.allowedTCPPorts = [80 config.presentation.port];
-    virtualisation.forwardPorts = [
-      {
-        from = "host";
-        guest.port = 80;
-        host.port = config.presentation.port;
-      }
-    ];
   };
 }
