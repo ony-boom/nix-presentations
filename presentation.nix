@@ -16,18 +16,21 @@ with lib; {
   };
 
   config = mkIf config.presentation.enable {
-    services.nginx.enable = true;
-    services.nginx.virtualHosts.localhost = {
+    services.nginx = {
+      enable = true;
       root = "${presentationPackage}";
-      listen = [
-        {
-          addr = "0.0.0.0";
-          port = config.presentation.port;
-        }
-      ];
-      index = "index.html";
+      virtualHosts.localhost.locations."/" = {
+        index = "index.html";
+      };
     };
 
     networking.firewall.allowedTCPPorts = [80 config.presentation.port];
+    virtualisation.forwardPorts = [
+      {
+        from = "host";
+        guest.port = 80;
+        host.port = config.presentation.port;
+      }
+    ];
   };
 }
