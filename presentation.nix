@@ -20,6 +20,12 @@ with lib; {
       enable = true;
       virtualHosts.localhost.locations."/" = {
         root = "${presentationPackage}";
+        listen = [
+          {
+            port = config.presentation;
+            addr = "0.0.0.0";
+          }
+        ];
         index = "index.html";
       };
     };
