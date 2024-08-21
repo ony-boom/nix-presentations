@@ -13,9 +13,8 @@
     pkgs = nixpkgs.legacyPackages.${system};
 
     buildInputs = with pkgs; [marp-cli nodejs];
-  in {
-    formatter.${system} = pkgs.alejandra;
-    packages.${system}.default = pkgs.stdenv.mkDerivation {
+
+    presentationPackage = pkgs.stdenv.mkDerivation {
       name = "npr";
       inherit buildInputs;
       src = ./.;
@@ -33,8 +32,14 @@
         cp -r $src/images $out/images
       '';
     };
+    nixosModule = import ./presentation.nix presentationPackage;
+  in {
+    formatter.${system} = pkgs.alejandra;
+    packages.${system}.default = presentationPackage;
+
     devShells.${system}.default = pkgs.mkShell {
       inherit buildInputs;
     };
+    nixosModules.default = nixosModule;
   };
 }
