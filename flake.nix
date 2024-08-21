@@ -21,23 +21,16 @@
       src = ./.;
 
       dontUnpack = true;
-			dontFixup = true;
+      dontFixup = true;
 
       buildPhase = ''
         marp $src/slides.md -o index.html
       '';
 
       installPhase = ''
-        mkdir -p $out/bin
-			
+        mkdir $out
         cp index.html $out/index.html
         cp -r $src/images $out/images
-
-        echo "#! ${pkgs.stdenv.shell}" >> "$out/bin/npr"
-				echo "cd $out" >> "$out/bin/npr"
-        echo "${pkgs.http-server}/bin/http-server -o" >> "$out/bin/npr"
-        
-        chmod 0755 "$out/bin/npr"
       '';
     };
     devShells.${system}.default = pkgs.mkShell {
