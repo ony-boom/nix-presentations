@@ -28,6 +28,6 @@ with lib; {
       index = "index.html";
     };
 
-    networking.firewall.allowedTCPPorts = [config.presentation.port];
+    networking.firewall.allowedTCPPorts = [80 config.presentation.port];
   };
 }
