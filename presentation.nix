@@ -18,8 +18,8 @@ with lib; {
   config = mkIf config.presentation.enable {
     services.nginx = {
       enable = true;
-      root = "${presentationPackage}";
       virtualHosts.localhost.locations."/" = {
+      	root = "${presentationPackage}";
         index = "index.html";
       };
     };
