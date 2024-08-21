@@ -6,16 +6,7 @@ presentationPackage: {
 }:
 with lib; {
   options.presentation = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Enable the presentation service.";
-    };
-
-    src = mkOption {
-      type = types.path;
-      description = "The source path for the presentation markdown and assets.";
-    };
+    enable = mkEnableOption "My awesome nix presentation";
 
     port = mkOption {
       type = types.int;
