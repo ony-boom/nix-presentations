@@ -9,6 +9,7 @@ theme: default
         font-size: 20px;
         font-family: "Open Sans", sans-serif;
     }
+
 </style>
 
 # Nix ❄️
@@ -50,6 +51,8 @@ This is the most obvious benefit, as it is the whole motivation behind Nix.
 Two people building the same package will always get the same output, if you’re careful enough with pinning the versions of inputs in place.
 And even if some input is different, it will be very clear since the store path will change.
 
+![bg right w:100%](./images/reproducible.png)
+
 ---
 
 ## 2. **Multiple versions of any package** can be installed simultaneously
@@ -61,7 +64,7 @@ This can be really handy during development – no more `nvm`, `volta`, ...
 
 # How to Nix ?
 
-Yes, demo time! 🎉.
+Yes, demo time! 🎉. We're gonna see how to use:
 
 1. nix as package manager
     - To install packages
