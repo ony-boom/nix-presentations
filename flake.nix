@@ -52,7 +52,7 @@
     };
     devShells.${system} = {
       default = pkgs.mkShell {
-        inherit buildInputs;
+					packahes = buildInputs;
       };
       multi = import ./examples/multi-version-shell.nix {inherit pkgs oldPkgs;};
     };
