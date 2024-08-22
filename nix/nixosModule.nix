@@ -26,7 +26,7 @@ in
               port = cfg.port;
             }
           ];
-          locations."/nix-presentation" = {
+          locations."/" = {
             root = "${presentationPackage}";
             index = "index.html";
           };
