@@ -1,7 +1,7 @@
 {
     "codesnap.backgroundColor": "transparent",
-    "codesnap.boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px",
+    "codesnap.boxShadow": "rgba(0, 0, 0, 0.1) 4px 8px 12px",
     "codesnap.showWindowTitle": true,
-    "codesnap.showWindowControls": false,
-    "codesnap.showLineNumbers": false
+    "codesnap.showLineNumbers": false,
+    "workbench.colorTheme": "Material Theme Ocean"
 }
