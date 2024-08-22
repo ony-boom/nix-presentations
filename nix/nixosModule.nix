@@ -23,7 +23,7 @@ in
           listen = [
             {
               addr = "0.0.0.0";
-              port = config.presentation.port;
+              port = cfg.port;
             }
           ];
           locations."/nix-presentation" = {
@@ -33,6 +33,6 @@ in
         };
       };
 
-      networking.firewall.allowedTCPPorts = [config.presentation.port];
+      networking.firewall.allowedTCPPorts = [cfg.port];
     };
   }
