@@ -37,13 +37,12 @@ but, nix is also:
 
 # So, why Nix ?
 
-I think that Nix is appealing for two main reasons:
+My main reasons:
 
 1. Reproducibility
 2. Multiple package versions
-...
-- Easy Rollback
-- Seamless integration with other tools
+3. Easy Rollback
+4. Seamless integration with other tools
 
 
 
