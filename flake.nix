@@ -35,6 +35,7 @@
         cp -r $src/images $out/images
       '';
     };
+
     nixosModule = import ./presentation.nix presentationPackage;
     runPresentation = pkgs.writeShellApplication {
       name = "run-presentation";
