@@ -82,6 +82,8 @@ Yes, demo time! 🎉. We're gonna see how to use:
 
 2. nix/nixos to configure your system in a rebroducible way. _(system level, so, as a server)_
 
+We're gonna use this presentation as demo
+
 ![bg right](./images/show.gif)
 
 ---
