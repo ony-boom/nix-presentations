@@ -1,7 +1,6 @@
 presentationPackage: {
   lib,
   config,
-  pkgs,
   ...
 }:
 with lib; {

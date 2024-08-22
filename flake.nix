@@ -6,10 +6,11 @@
     oldNixpkgs.url = "github:nixos/nixpkgs/nixos-23.11"; # nixpkgs repo for node18
   };
 
+  # all inputs is passed down to this output as parameters
   outputs = {
-    self,
     nixpkgs,
     oldNixpkgs,
+    ...
   }: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -17,26 +18,11 @@
 
     buildInputs = with pkgs; [marp-cli nodejs];
 
-    presentationPackage = pkgs.stdenv.mkDerivation {
-      name = "npr";
-      inherit buildInputs;
+    presentationPackage = import ./nix/package.nix {
+      inherit pkgs buildInputs;
       src = ./.;
-
-      dontUnpack = true;
-      dontFixup = true;
-
-      buildPhase = ''
-        marp $src/slides.md -o index.html
-      '';
-
-      installPhase = ''
-        mkdir $out
-        cp index.html $out/index.html
-        cp -r $src/images $out/images
-      '';
     };
 
-    nixosModule = import ./presentation.nix presentationPackage;
     runPresentation = pkgs.writeShellApplication {
       name = "run-presentation";
       text = ''
@@ -44,18 +30,29 @@
       '';
     };
   in {
+    # format all nix module
     formatter.${system} = pkgs.alejandra;
+
+    # the actual package that gonna be returned when `nix build`
+    # for this case the package will be the slides as html and all the images
     packages.${system}.default = presentationPackage;
+
+    # we can run program directly using `nix run`
+    # This will run the presentation
     apps.${system}.default = {
       type = "app";
       program = "${runPresentation}/bin/run-presentation";
     };
+
+    # A list of dev environment
     devShells.${system} = {
       default = pkgs.mkShell {
-					packahes = buildInputs;
+        packages = buildInputs;
       };
-      multi = import ./examples/multi-version-shell.nix {inherit pkgs oldPkgs;};
+      multi = import ./nix/multi-version-shell.nix {inherit pkgs oldPkgs;};
     };
-    nixosModules.default = nixosModule;
+
+    # nixos configuration module
+    nixosModules.default = import ./nix/nixosModule.nix presentationPackage;
   };
 }
