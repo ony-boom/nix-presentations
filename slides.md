@@ -22,15 +22,14 @@ Nix is a tool that takes a unique approach to package management and system conf
 
 ---
 
-## The nix rabbit hole
+## The nix ecosystem (a rabbit hole)
 
 but, nix is also:
 - an os _(more on this later)_
-- a programming language _(more on this later too)_
-- a build tool
-- and other things, that I don't even know yet 😮‍💨
+- a programming language
+...
 
-![w:380 right bg](./images/nix-ecosystem.png)
+![w:70% right bg](./images/nix-ecosystem.png)
 
 ---
 <!-- footer: ❄️❄️ -->
@@ -39,30 +38,30 @@ but, nix is also:
 
 My main reasons:
 
-1. Reproducibility
+1. Declarative and reproducible
 2. Multiple package versions
 3. Easy Rollback
 4. Seamless integration with other tools
+5. Nix packages repository is huge ([This huge](https://repology.org/repositories/graphs))
 
 
 
-> Take [this pill](https://nixos.org/guides/nix-pills/01-why-you-should-give-it-a-try)! 💊😉
+> More reasons [here](https://nixos.org/guides/nix-pills/01-why-you-should-give-it-a-try)!
 
 ---
 
-## 1. Because it's **reproducible**.
+## 1. **Declarative** and **reproducible**.
 
 This is the most obvious benefit, as it is the whole motivation behind Nix. 
 Two people building the same package will always get the same output, if you’re careful enough with pinning the versions of inputs in place.
 And even if some input is different, it will be very clear since the store path will change.
-
-> 💡Think of it as a pure function.
 
 ![bg right w:100%](./images/reproducible.png)
 
 ---
 
 ## 2. **Multiple versions of any package** can be installed simultaneously
+
 Every package is installed under its own prefix, so there are no collisions (unless a given package depends on multiple versions of another package, which is a rare occasion and is usually easy enough to handle).
 This can be really handy during development – no more `nvm`, `volta`, ...
 
@@ -87,11 +86,10 @@ We're gonna use this presentation as demo
 
 ---
 
-**Installing nix**:
+## Installing nix:
 
 - [Official way](https://nixos.org/download/)
 - [An more clean way](https://github.com/DeterminateSystems/nix-installer)
-    More friendly than the official one.
 
 ---
 
